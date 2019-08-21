@@ -10,8 +10,7 @@ const tar = require('tar-stream')
 
 const pump = promisify(pipeline)
 
-const {SOURCES_DIR} = process.env
-const ARCHIVES_PATH = join(SOURCES_DIR, 'archives')
+const {SOURCES_DIR, ARCHIVES_DIR} = process.env
 const OUTPUT_DIR = join(__dirname, '..', 'dist')
 
 const FILETYPE_MAPPING = {
@@ -80,8 +79,8 @@ async function main() {
 
   await Promise.all(archivesPaths.map(async archivePath => {
     await extractArchive(archivePath)
-    await ensureDir(ARCHIVES_PATH)
-    await move(archivePath, join(ARCHIVES_PATH, basename(archivePath)))
+    await ensureDir(ARCHIVES_DIR)
+    await move(archivePath, join(ARCHIVES_DIR, basename(archivePath)))
   }))
 
   await electLatest()
