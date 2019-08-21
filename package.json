@@ -1,0 +1,31 @@
+{
+  "name": "@etalab/adresse-data",
+  "version": "0.0.0",
+  "description": "Scripts pour gérer les données diffusées par adresse.data.gouv.fr",
+  "main": "index.js",
+  "repository": "git@github.com:etalab/adresse-data.git",
+  "author": "Jérôme Desboeufs <jerome.desboeufs@data.gouv.fr>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prepare-export-api-gestion": "node bin/prepare-export-api-gestion"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "fs-extra": "^8.0.1",
+    "tar-stream": "^2.1.0"
+  },
+  "devDependencies": {
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "semicolon": false,
+    "space": 2,
+    "rules": {
+      "camelcase": "off"
+    }
+  },
+  "engines": {
+    "node": ">= 10"
+  }
+}
