@@ -5,7 +5,7 @@ const {join, basename} = require('path')
 const {pipeline} = require('stream')
 const {promisify} = require('util')
 const {createReadStream, createWriteStream} = require('fs')
-const {ensureFile, readdir, ensureDir, move, symlink, remove} = require('fs-extra')
+const {ensureFile, readdir, ensureDir, copy, symlink, remove} = require('fs-extra')
 const tar = require('tar-stream')
 
 const pump = promisify(pipeline)
@@ -80,7 +80,7 @@ async function main() {
   await Promise.all(archivesPaths.map(async archivePath => {
     await extractArchive(archivePath)
     await ensureDir(ARCHIVES_DIR)
-    await move(archivePath, join(ARCHIVES_DIR, basename(archivePath)))
+    await copy(archivePath, join(ARCHIVES_DIR, basename(archivePath)))
   }))
 
   await electLatest()
